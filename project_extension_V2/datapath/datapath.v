@@ -29,7 +29,7 @@ module datapath(
     endgenerate
 
     // FIXED: Proper sign extension allows JUMP and BRSH to jump backwards!
-    wire [15:0] extern_data_padded = {{8{extern_data[7]}}, extern_data};
+    wire [15:0] extern_data_padded = {8'b0, extern_data};
     
     tri_state_buffer extern_tri(.en(extern_en), .in(extern_data_padded), .out(bus));
     

@@ -1,13 +1,15 @@
 module program_ram(
-        input clk, reset, write_enable, // 1 = Write, 0 = Read.
+        input clk, reset, write_enable, read_enable, // 1 = Write, 0 = Read.
         input[7:0] write_address,       // Initial addresses to load in.
         input[7:0] read_address,        // PC address for next instruction.
         input [15:0] data_in,           // instruction to store
-        output wire [15:0] data_out     // instruction to read
+        output [15:0] data_out     // instruction to read
     );
 
     reg [15:0] ram[0:255];
     integer i;
+
+    assign data_out = read_enable ? ram[read_address] : 16'b0; // Make reading instruction from PMEM combinational.
 
     //Read and Write block
     always @(posedge clk or posedge reset) begin
@@ -22,8 +24,4 @@ module program_ram(
             end  
         end
     end
-    
-    // Combinational read ensures zero-latency fetch for the state machine
-    assign data_out = ram[read_address];
-
 endmodule

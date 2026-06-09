@@ -15,7 +15,7 @@ module DMEM(
             memory[address] <= d_in;
     end
     
-    // Combinational Read (Eliminates the read-latch race condition)
+    // Combinational Read
     assign d_out = (re == 1'b1) ? memory[address] : 16'hzzzz;
 
 endmodule
