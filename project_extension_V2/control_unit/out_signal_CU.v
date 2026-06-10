@@ -154,7 +154,7 @@ module out_signal_CU (
             end 
 
             8'h20 : begin
-                brsh_en = 1; extern_data = code[7:0]; extern_en = 1;
+                brsh_en = 1; extern_data = code[7:0]; extern_en = 1; inc_PC = 1;
             end
 
             8'h21 : begin
@@ -162,7 +162,7 @@ module out_signal_CU (
             end 
 
             8'h22 : begin
-                brlo_en = 1; extern_data = code[7:0]; extern_en = 1;
+                brlo_en = 1; extern_data = code[7:0]; extern_en = 1; inc_PC = 1;
             end
 
             8'h23 : begin //sts
